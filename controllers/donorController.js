@@ -53,3 +53,20 @@ exports.getDonorById = async (req, res) => {
         })
     }
 }
+
+exports.deleteDonorById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const donor = await Donor.deleteOne({ _id: id });
+        res.status(200).json({
+            success: true,
+            message: 'Successfully delete donor'
+        })
+    } catch (error) {
+        return res.status(400).json({
+            success: false,
+            message: "Couldn't delete donor",
+            error: error.message
+        })
+    }
+}
