@@ -5,4 +5,8 @@ router.route('/')
     .post(donorControllers.addDonor)
     .get(donorControllers.getDonors)
 
+
+router.route('/:id')
+    .get(donorControllers.getDonorById)
+
 module.exports = router;

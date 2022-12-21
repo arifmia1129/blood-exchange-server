@@ -21,7 +21,7 @@ exports.addDonor = async (req, res) => {
 exports.getDonors = async (req, res) => {
     try {
         const donors = await Donor.find();
-        res.status(201).json({
+        res.status(200).json({
             success: true,
             message: 'Successfully get donors',
             donors
@@ -30,6 +30,25 @@ exports.getDonors = async (req, res) => {
         return res.status(400).json({
             success: false,
             message: "Couldn't get donors",
+            error: error.message
+        })
+    }
+}
+
+
+exports.getDonorById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const donor = await Donor.findOne({ _id: id });
+        res.status(200).json({
+            success: true,
+            message: 'Successfully get donor',
+            donor
+        })
+    } catch (error) {
+        return res.status(400).json({
+            success: false,
+            message: "Couldn't get donor",
             error: error.message
         })
     }
