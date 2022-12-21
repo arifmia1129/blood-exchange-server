@@ -9,5 +9,6 @@ router.route('/')
 router.route('/:id')
     .get(donorControllers.getDonorById)
     .delete(donorControllers.deleteDonorById)
+    .put(donorControllers.updateDonorById)
 
 module.exports = router;

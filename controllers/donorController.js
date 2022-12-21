@@ -70,3 +70,21 @@ exports.deleteDonorById = async (req, res) => {
         })
     }
 }
+
+
+exports.updateDonorById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const donor = await Donor.updateOne({ _id: id }, req.body);
+        res.status(200).json({
+            success: true,
+            message: 'Successfully update donor'
+        })
+    } catch (error) {
+        return res.status(400).json({
+            success: false,
+            message: "Couldn't update donor",
+            error: error.message
+        })
+    }
+}
